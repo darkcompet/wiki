@@ -1,8 +1,12 @@
 # Mac Command line
 
 
-## List
+## Command Lines
 
-#### dir: list in directory
+#### powermetrics: view metric of device
 
-#### start: open folder in explorer
+- Show CPU and GPU temperature
+
+   ```bash
+   sudo powermetrics|grep -i "die temperature"
+   ```

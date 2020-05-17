@@ -1,8 +1,8 @@
 # Windows Command line
 
 
-## List
+## Command Lines
 
-#### dir
+#### dir: list in directory
 
-#### ls
+#### start: open folder in explorer

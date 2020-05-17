@@ -1,10 +1,27 @@
 # Application
 
 
+## Sync local repository with remote repository
+
+- Edit, Commit then Push local changes to remote repo.
+
+   ```bash
+      git add --all
+      git commit -m "commit_message"
+      git push
+   ```
+
+   Or we can shortly type with
+
+   ```bash
+   git commit -am "commit_message"
+   git push
+   ```
+
+
 ## Git flow
 
 This will imitate `git-flow` by combining git commands.
-
 
 #### Hotfix feature
 
@@ -45,24 +62,9 @@ This will imitate `git-flow` by combining git commands.
    ```
 
 
-#### Sync local repository with remote repository
+## Staging area
 
-- Edit, Commit then Push local changes to remote repo.
-
-   ```bash
-      git add --all
-      git commit -m "commit_message"
-      git push
-   ```
-
-   Or we can shortly type with
-
-   ```bash
-   git commit -am "commit_message"
-   git push
-   ```
-
-#### Effect `.gitignore` file
+Effect `.gitignore` file
 
 - This will remove all index from staging area. So we can re-add files from workspace.
 
@@ -70,27 +72,66 @@ This will imitate `git-flow` by combining git commands.
       git rm -r --cached .
    ```
 
-#### Undo changes
 
-> See: https://docs.gitlab.com/ee/topics/git/numerous_undo_possibilities_in_git/
+## Discard changes
 
-- Before staged (before run `git add`), we can discard changes which be made in workspace by run:
+>https://docs.gitlab.com/ee/topics/git/numerous_undo_possibilities_in_git/
+>https://www.earthdatascience.org/workshops/intro-version-control-git/undoing-things/
+
+- Before staged (before run `git add`), we can discard changes which be made in workspace.
 
    ```bash
-      # discard only given file
-      git checkout -- [file_name]
-      # or discard all files
+      # discard to last staged or last commited
+      git checkout -- [file_path]
+      # or discard all changes of files
+      git checkout -- .
+      
+      # OR discard changes of all files
       git reset --hard
-      # or stash to recovery later
+      
+      # OR stash to recovery later
       git stash
    ```
 
-- After staged and Before commit (after run `git add` and before run `git commit`),
-we can discard changes.
+- Discard After staged but Before commit (after run `git add` and before run `git commit`).
 
-#### Tracking remote branch
+   ```bash
+   git reset HEAD [file_path]
+
+   # Note that you can reset to older version
+   git reset HEAD~1 [file_path]
+   git reset HEAD~2 [file_path]
+   git reset HEAD~3 [file_path]
+   ```
+
+- By combining `checkout` and `reset`, we can completely discard changes as below
+
+   ```bash
+   git reset --hard
+   git checkout -- .
+   ```
+
+>For summary:
+>`git checkout` will discard changes from `staging` -> `workspace` way.
+>`git reset` will discard changes from `repo` -> `staging` way.
+
+
+## Tracking remote branch
 
    ```bash
       # track remote develop branch to local develop branch
       git branch --set-upstream-to=origin/develop develop
    ```
+
+
+## Switch commit
+
+When we wanna switch to a commit, we can use `reset` command to reset current workspace to target commit.
+
+- Reset with `--hard` option to remove changes by current workspace. Note that, newly added files will not be removed.
+
+   ```bash
+   git reset --hard [commit_id]
+   ```
+
+- Reset with `--soft`` option to 

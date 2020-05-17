@@ -1,9 +1,7 @@
-# Command Line
+# Git Command Line List
 
 
-## List of Command lines
-
-#### ssh-keygen
+## ssh-keygen
 
 - To work with git via ssh connection, we need register a ssh key with git server.
 Note that, saved file name is important since Git will check it to validate with server
@@ -16,7 +14,8 @@ registered ssh key.
       ssh-keygen -t rsa -b 4096 -C "darkcompet@gmail.com"
    ```
 
-#### git add
+
+## git add
 
 - Add all records to index-tree
 
@@ -30,7 +29,8 @@ registered ssh key.
    git add -f [path_to_file_or_dir]
    ```
 
-#### git branch
+
+## git branch
 
 - List branch in remote
 
@@ -61,7 +61,8 @@ registered ssh key.
       git push origin --delete [remote_branch_name]
       ```
 
-#### git checkout
+
+## git checkout
 
 - Switch branch
 
@@ -70,11 +71,14 @@ registered ssh key.
       git checkout [branch_name]
    ```
 
-- Unmodifing a modified file. This command revert our file content to last commited file content
+- Discard unstaged changes
 
    ```bash
-   # get a file from local last commited to workspace. Note that this will replace current file of add new
+   # this will discard UNSTAGED changes to last commited version or last saved in staging area
    git checkout -- [file_path]
+
+   # OR discard all changes in files
+   git checkout -- .
 
    # get a file from local commit to workspace. Note that this will replace current file or add new
    git checkout [commit_hash] -- [file_path]
@@ -83,17 +87,18 @@ registered ssh key.
    git checkout origin/master -- [file_path]
    ```
 
-- Create new local branch from a branch
+- Create (clone) new local branch from a branch
 
    ```bash
-   git checkout -b [new_branch_name] [from_branch_name]
+   git checkout -b [new_branch_name] [src_branch_name]
 
    # or checkout branch first then create new local branch
    git checkout [src_branch_name]
    git checkout -b [new_branch_name]
    ```
 
-#### git clone
+
+## git clone
 
 - Clone remote repo to local repo.
 
@@ -105,7 +110,8 @@ registered ssh key.
       git clone https://darkcompet@gitlab.com/darkcompet/flutter_core.git
    ```
 
-#### git commit
+
+## git commit
 
  - Commit workspace changes in staging area to local repo.
 
@@ -120,7 +126,8 @@ registered ssh key.
    git commit --amend -m "[new_commit_message]"
    ```
 
-#### git config
+
+## git config
 
 - View config of `system, global and local` git.
 
@@ -160,7 +167,8 @@ registered ssh key.
       git config --system --unset credential.helper
    ```
 
-#### git diff
+
+## git diff
 
 By default, `git diff` shows only changes between `unstaged files` with `repo`, it we wanna target to
 `staged files`, we just add `--staged` as an option.
@@ -178,7 +186,8 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
    git diff --staged
    ```
 
-#### git fetch
+
+## git fetch
 
 - Fetch repos and refs from remote
 
@@ -186,7 +195,8 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
    git fetch
    ```
 
-#### git flow
+
+## git flow
 
 - Init git flow for a project
 
@@ -194,7 +204,8 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
    git flow init
    ```
 
-#### git log
+
+## git log
 
 - See log of all commits.
 
@@ -206,7 +217,8 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
       git log --name-only
    ```
 
-#### git push
+
+## git push
 
 - Publish a local branch to remote (push a local branch to remote at first time)
 
@@ -224,7 +236,8 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
       git push origin [branch_name]
    ```
 
-#### git merge
+
+## git merge
 
 - Merge a branch to another branch.
 
@@ -269,7 +282,8 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
       git merge -s subtree [branch1_name] [branch2_name]
       ```
 
-#### git rebase
+
+## git rebase
 
 Like `merge` command, this will merge without creating `merge-commit`.
 
@@ -280,20 +294,40 @@ Like `merge` command, this will merge without creating `merge-commit`.
    git rebase master
    ```
 
-#### git reset
 
-- Reset a branch to some commit
+## git reset
+
+>See more: git reset --help
+
+#### Usage
+
+The command `git reset` will reset to target commit. In general, it has general 3 options: `--soft, --mixed, --hard`,
+but restrictly speaking it has more than.
+
+
+- `git reset --soft`: Reset `HEAD` only.
+
+   ```bash
+   # only change pointer of HEAD to target commit
+   # staging index or workspace will be not changed
+   git reset --soft [commit_id]
+   ```
+
+   ※ Note about usecase of this option: we can use this to change commit message, rebase a commit...
+
+- `git reset --mixed`: This is default option, will reset `HEAD, staging index`.
+
+   ```bash
+   # point to target commit and reset staging index.
+   git reset --mixed [commit_id]
+   ```
+
+- `git reset --hard`: Reset `HEAD, staging index, workspace`.
 
    ```bash
       # switch current branch to a commit. Note that, this will reset everything in local
       # (workspace, staging, local repo) to make current branch same with target commit.
-      git reset --hard [commit_hashtag]
-   ```
-
-- Reset a branch to some commit
-
-   ```bash
-   git reset --soft [commit_hashtag]
+      git reset --hard [commit_id]
    ```
 
 - Delete lastest commited 
@@ -313,7 +347,8 @@ Like `merge` command, this will merge without creating `merge-commit`.
    git reset HEAD [file_name]
    ```
 
-#### git remote
+
+## git remote
 
 - Show all info on remote
 
@@ -321,7 +356,8 @@ Like `merge` command, this will merge without creating `merge-commit`.
    git remote show origin
    ```
 
-#### git rm
+
+## git rm
 
 Remove index of file from staging area. Note that, this command will `physically delete` that file
 from current repo after we pull.
@@ -341,7 +377,8 @@ to ignore them from untracked files).
    git rm --cached logs/\*.log
    ```
 
-#### git status
+
+## git status
 
 - Check state of the files.
 
@@ -350,7 +387,8 @@ to ignore them from untracked files).
       git status
    ```
 
-#### git stash
+
+## git stash
 
 - Move current changes in workspace to temporary space. This will compute changes between workspace
 with last commit in local repo.
@@ -383,7 +421,8 @@ with last commit in local repo.
    git stash clear
    ```
 
-#### git tag
+
+## git tag
 
 Tag specific point to a repo. It is useful for marking release points.
 
@@ -397,7 +436,8 @@ Tag specific point to a repo. It is useful for marking release points.
    git tag --list "1.18.*4"
    ```
 
-#### git update-index
+
+## git update-index
 
 This command works with staging area.
 
