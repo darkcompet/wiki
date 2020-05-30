@@ -134,4 +134,26 @@ When we wanna switch to a commit, we can use `reset` command to reset current wo
    git reset --hard [commit_id]
    ```
 
-- Reset with `--soft`` option to 
+- Reset with `--soft` option to.....
+
+
+## Release a small feature in a big feature
+
+Suppose when we develop a big feature, we separate it to a lot of feature-piece and work on each piece.
+But at some time, we wanna release a some small feature which has been commited, so we can use `cherry-pick`.
+
+- Apply changes from a commit to current branch
+
+   ```bash
+   # apply changed from a feature commit to master
+   git checkout master
+   git cherry-pick [feature_commit_id]
+   ```
+
+
+
+Note:
+- Undo a commit
+https://kipalog.com/posts/Undo--mot-commit-trong-git-tree
+- Patch a range of commits
+https://stackoverflow.com/questions/509859/what-is-the-best-way-to-git-patch-a-subrange-of-a-branch

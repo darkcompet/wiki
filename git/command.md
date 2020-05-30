@@ -167,6 +167,30 @@ registered ssh key.
       git config --system --unset credential.helper
    ```
 
+## git cherry-pick
+
+>see-also: merge, rebase
+
+>git cherry-pick --continue
+>git cherry-pick --abort
+>git cherry-pick --quit
+
+Unlike `merge`, this command will not create commit after merging.
+
+- Merge some commit from another branch to a branch
+
+   ```bash
+   # merge a commit from master to feature
+   git checkout [feature_branch_name]
+   git cherry-pick [master_some_commit_id]
+   ```
+
+   ※ It is `not practical`, but if we wanna merge range of commits to a branch, just declares them
+
+   ```bash
+   git cherry-pick [master_commit_id_1] [master_commit_id_3] [master_commit_id_7]
+   ```
+
 
 ## git diff
 
@@ -239,15 +263,28 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
 
 ## git merge
 
+>see-also: rebase, cherry-pick
+
+This command will merge a `changes of last commit` of a branch to another branch.
+
 - Merge a branch to another branch.
 
    ```bash
-      # Merge develop branch to master branch at local
+      # Merge feature branch to master branch at local
       git checkout master
-      git merge develop
+      git merge [feature_branch_name]
 
       # when merging is fast-forward, we can customize commit message by specify --no-ff argument
       git merge --no-ff develop
+   ```
+
+- Merge `last snapshot` to another branch. Note that, this will combine all commits of a branch,
+then commit them as last snapshot to another branch.
+
+   ```bash
+   # only merge commit will be in git log history (not all commits of feature branch)
+   git checkout master
+   git merge --squash [feature_branch_name]
    ```
 
 - Merging strategy list ([see merge-strategy](https://www.atlassian.com/git/tutorials/using-branches/merge-strategy))
@@ -285,6 +322,10 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
 
 ## git rebase
 
+>see-also: merge, cherry=pick
+
+>options: --continue, --skip, abort
+
 Like `merge` command, this will merge without creating `merge-commit`.
 
 - Update changes from master to current feature branch
@@ -294,12 +335,24 @@ Like `merge` command, this will merge without creating `merge-commit`.
    git rebase master
    ```
 
+   For example:
+
+   ```
+                A1---B1---C1 feature-1
+            /
+   A---B---C---D---E---F---G master
+
+   ↓ (rebase done)
+
+                                A1---B1---C1 feature-1
+                            /
+   A---B---C---D---E---F---G master
+   ```
+
 
 ## git reset
 
 >See more: git reset --help
-
-#### Usage
 
 The command `git reset` will reset to target commit. In general, it has general 3 options: `--soft, --mixed, --hard`,
 but restrictly speaking it has more than.
@@ -336,8 +389,10 @@ but restrictly speaking it has more than.
    # keeping our changes
    git reset --soft HEAD~1
 
-   # also delete our changes
-   git reset --hard HEAD~1   
+   # delete workspace changes, staing and commit (require: not yet push)
+   git reset --hard HEAD~
+   # or
+   git reset --hard HEAD~1
    ```
 
 - Unstage a staged file
@@ -420,6 +475,32 @@ with last commit in local repo.
    ```bash
    git stash clear
    ```
+
+
+## git submodule
+
+Allow add sub-git in a git-project.
+
+- Init submodule
+
+   ```bash
+   # goto project and add sub-git as submodule
+   git submodule add [our_subgit_https://github.com/username/demo.git]
+   ```
+
+- Push/Pull submodule
+
+   ```bash
+   # change something in submodule folder and push
+   cd [sub-git-folder]
+   nano ....
+   git commit -m "edit submodule"
+   git push origin master
+
+   # pull submodule at other dev
+   git submodule update
+   ```
+
 
 
 ## git tag
