@@ -328,11 +328,12 @@ then commit them as last snapshot to another branch.
 
 Like `merge` command, this will merge without creating `merge-commit`.
 
-- Update changes from master to current feature branch
+- Update changes from master to current feature branch, [see-also](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
    ```bash
+   # rebase all commits `from time leave master to now` at feature branch ONTO master
    git checkout [feature_branch_name]
-   git rebase master
+   git rebase -i master
    ```
 
    For example:
@@ -356,7 +357,6 @@ Like `merge` command, this will merge without creating `merge-commit`.
 
 The command `git reset` will reset to target commit. In general, it has general 3 options: `--soft, --mixed, --hard`,
 but restrictly speaking it has more than.
-
 
 - `git reset --soft`: Reset `HEAD` only.
 
@@ -382,6 +382,15 @@ but restrictly speaking it has more than.
       # (workspace, staging, local repo) to make current branch same with target commit.
       git reset --hard [commit_id]
    ```
+
+   - Summary (https://backlog.com/ja/git-tutorial/stepup/24/)
+
+   モード名 | HEADの位置 | インデックス | ワークツリー
+   |-------|----------|-------------|----------|
+   soft | 変更する | 変更しない | 変更しない
+   mixed | 変更する | 変更する | 変更しない
+   hard | 変更する | 変更する | 変更する
+
 
 - Delete lastest commited 
 
