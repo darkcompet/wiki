@@ -71,7 +71,7 @@ registered ssh key.
       git checkout [branch_name]
    ```
 
-- Discard unstaged changes
+- Discard unstaged changes by using `--` (checkout a file from a commit)
 
    ```bash
    # this will discard UNSTAGED changes to last commited version or last saved in staging area
@@ -169,7 +169,7 @@ registered ssh key.
 
 ## git cherry-pick
 
->see-also: merge, rebase
+>see-also: merge, rebase, revert
 
 >git cherry-pick --continue
 >git cherry-pick --abort
@@ -410,6 +410,39 @@ but restrictly speaking it has more than.
    # reset the file with content in current repo which be pointed by HEAD (our pointer)
    git reset HEAD [file_name]
    ```
+
+
+## git revert
+
+>git revert --continue
+>git revert --skip
+>git revert --abort
+
+- This command will create new commit that is opposite of target commit.
+
+   ```bash
+   # unchange stuffs in current (head) commit
+   git revert --no-commit HEAD
+
+   # or revert by commit hash
+   git revert --no-commit [commit3_hash]
+   git revert --no-commit [commit2_hash]
+   git revert --no-commit [commit1_hash]
+   ```
+
+   Note: For example, we commited `A -> B -> C -> D`, and suppose head is D. Now, we wanna create a new commit that change
+   working tree to state of commit B. So we need do as below:
+   
+   ```bash
+   # back to C
+   git revert HEAD
+   # back to B
+   git revert HEAD
+   ```
+
+   ※ Above actions like `git checkout B -- .`, BUT `git checkout` will not delete file which is in D, not in B.
+   ※ Suppose we wanna `revert to B` (revert D and C) just by command `git revert --no-commit B`, then git will
+   perform `patch (reset) A to HEAD`, that is, content of commit A will be current working tree.
 
 
 ## git remote
