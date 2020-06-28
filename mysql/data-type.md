@@ -47,6 +47,22 @@
    YEAR | A year value in CCYY or YY format
 
 
+- Json types
+
+- Spatial types
+
+   Spatial Data Types | Description
+   |---|---|
+   GEOMETRY | A spatial value of any type
+   POINT | A point (a pair of X-Y coordinates)
+   LINESTRING | A curve (one or more POINT values)
+   POLYGON | A polygon
+   GEOMETRYCOLLECTION | A collection of GEOMETRYvalues
+   MULTILINESTRING | A collection of LINESTRINGvalues
+   MULTIPOINT | A collection of POINTvalues
+   MULTIPOLYGON | A collection of POLYGONvalues
+
+
 ## VARCHAR
 
 
