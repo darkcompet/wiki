@@ -338,7 +338,7 @@ Like `merge` command, this will merge without creating `merge-commit`.
 
    For example:
 
-   ```
+   ```bash
                 A1---B1---C1 feature-1
             /
    A---B---C---D---E---F---G master
@@ -386,19 +386,19 @@ but restrictly speaking it has more than.
    - Summary (https://backlog.com/ja/git-tutorial/stepup/24/)
 
    モード名 | HEADの位置 | インデックス | ワークツリー
-   |-------|----------|-------------|----------|
+   |-------|-----------|------------|----------|
    soft | 変更する | 変更しない | 変更しない
    mixed | 変更する | 変更する | 変更しない
    hard | 変更する | 変更する | 変更する
 
 
-- Delete lastest commited 
+- Delete last not-yet-pushed-commit (move to before commit)
 
    ```bash
    # keeping our changes
    git reset --soft HEAD~1
 
-   # delete workspace changes, staing and commit (require: not yet push)
+   # delete workspace changes, staging and commit (require: commit is not yet pushed)
    git reset --hard HEAD~
    # or
    git reset --hard HEAD~1
@@ -430,7 +430,7 @@ but restrictly speaking it has more than.
    git revert --no-commit [commit1_hash]
    ```
 
-   Note: For example, we commited `A -> B -> C -> D`, and suppose head is D. Now, we wanna create a new commit that change
+   Note: For example, we commited `A -> B -> C -> D`, and suppose head is D. Now, we wanna create a new commit that set
    working tree to state of commit B. So we need do as below:
    
    ```bash
@@ -442,7 +442,7 @@ but restrictly speaking it has more than.
 
    ※ Above actions like `git checkout B -- .`, BUT `git checkout` will not delete file which is in D, not in B.
    ※ Suppose we wanna `revert to B` (revert D and C) just by command `git revert --no-commit B`, then git will
-   perform `patch (reset) A to HEAD`, that is, content of commit A will be current working tree.
+   perform `patch (reset) files which was changed at A -> B onto HEAD`, that is, changed files in A will be current working tree.
 
 
 ## git remote

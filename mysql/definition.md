@@ -1,4 +1,4 @@
-# MySQL
+# MySQL Definition
 
 
 ## Command Line
@@ -21,13 +21,16 @@
       drop database [db_name];
    ```
 
-- Import database from a file:
+## Import/Export database
 
    ```bash
+   # import database from a file
    mysql -u [username] -p [database_name] < [file.sql]
+
+   # export database to a file
    ```
 
-- Change password
+## Change password
 
    ```bash
       # in mac or unix, we need start mysql server first
@@ -45,17 +48,7 @@
    FLUSH PRIVILEGES;
    ```
 
-- Add/Remove a sqlmode
-
-   ```bash
-   # add a sqlmode, eg,. ONLY_FULL_GROUP_BY
-   SET sql_mode=(SELECT CONCAT(@@sql_mode,',ONLY_FULL_GROUP_BY'));
-
-   # remove a sqlmode, eg,. ONLY_FULL_GROUP_BY
-   SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-   ```
-
-- On Unix: Reset root password when forgotten
+- [Unix] Reset root password when forgotten
 
    ```bash
       mysql.server stop
@@ -68,9 +61,26 @@
       \q
    ```
 
-- Kill sleeping processes
+
+## Add/Remove a sqlmode
+
+   ```bash
+   # add a sqlmode, eg,. ONLY_FULL_GROUP_BY
+   SET sql_mode=(SELECT CONCAT(@@sql_mode,',ONLY_FULL_GROUP_BY'));
+
+   # remove a sqlmode, eg,. ONLY_FULL_GROUP_BY
+   SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+   ```
+
+## Kill sleeping processes
 
    ```bash
       mysqladmin processlist -u root -p
       mysqladmin kill [process_id] -u root -p
    ```
+
+## Truncate, Drop, Delete table
+
+- `truncate` will `clear data + reset auto-increment-value`, internally, `truncate` use `drop + create` table.
+- `drop` will `clear data + delete table structure + remove associated objects (indices, contraints...)`.
+- `delete` will just `clear data row-by-row`, so it is slow if table contains a lot of records.
