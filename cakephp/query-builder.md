@@ -42,3 +42,33 @@ https://book.cakephp.org/3/en/orm/query-builder.html
       ->enableHydration(false); // Results as arrays instead of entities
       ->toList();
    ```
+
+
+## Insert
+
+To insert new records to table, we should not usr `find()`, instead of that, we should
+use `query()` to perform the action.
+
+   ```sql
+   $data = $articles->find()
+      ->select(['title', 'body', 'published'])
+      ->where(['id' => 3]);
+
+   $query = $articles->query()
+      ->insert(['title', 'body', 'published'])
+      ->values($data)
+      ->execute();
+   ```
+
+
+## Update
+
+As insert, to update we should use `query()` as below
+
+   ```sql
+   $query = $articles->query();
+   $query->update()
+      ->set(['published' => true])
+      ->where(['id' => $id])
+      ->execute();
+   ```
