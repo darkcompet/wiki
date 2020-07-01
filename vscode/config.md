@@ -38,3 +38,7 @@
    key: find all reference
    value: F12
    ```
+
+## Setting Key
+
+- `explorer.autoReveal`: Auto reveal file in work tree, that is, control whether scroll to file when open.
