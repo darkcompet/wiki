@@ -234,11 +234,14 @@ By default, `git diff` shows only changes between `unstaged files` with `repo`, 
 - See log of all commits.
 
    ```bash
-      # see only commit log
-      git log
+   # see only commit log
+   git log
 
-      # see with filename
-      git log --name-only
+   # see with filename
+   git log --name-only
+
+   # see log with graphics
+   git log --all --graph --decorate --oneline
    ```
 
 
@@ -322,9 +325,9 @@ then commit them as last snapshot to another branch.
 
 ## git rebase
 
->see-also: merge, cherry=pick
+>see-also: merge, cherry-pick
 
->options: --continue, --skip, abort
+>options: --continue, --skip, --abort
 
 Like `merge` command, this will merge without creating `merge-commit`.
 
@@ -348,6 +351,15 @@ Like `merge` command, this will merge without creating `merge-commit`.
                                 A1---B1---C1 feature-1
                             /
    A---B---C---D---E---F---G master
+   ```
+
+
+## git reflog
+
+- See all log action
+
+   ```bash
+   git reflog
    ```
 
 
