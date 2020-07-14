@@ -504,6 +504,9 @@ with last commit in local repo.
 
    ```bash
    git stash
+
+   # or stash single file
+   git stash -- [file_path]
    ```
 
 - Apply last stashed changes to workspace
