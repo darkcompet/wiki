@@ -1,0 +1,191 @@
+<style>
+   h1 {
+      border: 3px solid black;
+   }
+   h2 {
+      border: 2px solid darkgray;
+   }
+   p {
+      border: 1px solid lightgray;
+   }
+</style>
+
+<html>
+   <body>
+      <h1>Flex layout</h1>
+      <a href="https://viblo.asia/p/huong-dan-su-dung-css-flexbox-cho-nguoi-moi-tim-hieu-oOVlYyA4l8W">For beginner</a>
+      
+      <h2>align-items</h2>
+      <p>Move items in vertical axis</p>
+      <a href="https://hocwebchuan.com/reference/generator/flex_box.php">Ref. hocwebchuan</a>
+      
+      <style>
+         .test_align_items {
+            display: flex;
+            
+            /**
+             * Move in vertical axis.
+             * Value: center, flex-start, flex-end, baseline, initial, inherit, stretch.
+             */
+            align-items: center;
+            
+            /**
+             * Make items as column.
+             * Value: row, row-reverse, column, column-reverse, nowrap, wrap-reverse
+             */
+             flex-direction: column;
+            -webkit-flex-direction: column;
+            
+            /**
+             * Customize display
+             */
+            background-color: grey;
+            border: 1px solid red;
+            border-radius: 1em;
+         }
+      </style>
+      
+      <div class="test_align_items">
+         <p>this is one</p>
+         <p>this is two</p>
+         <p>this is three</p>
+         <p>this is four</p>
+         <p>this is five</p>
+      </div>
+      
+      
+      <h2>justify-content</h2>
+      <p>Move items in horizontal axis</p>
+      <a href="https://hocwebchuan.com/reference/generator/flex_box.php">Ref. hocwebchuan</a>
+      
+      <style>
+         .test_justify_content {
+            /**
+             * Declare layout type
+             */
+            display: flex;
+            
+            /**
+             * Make horizontal.
+             * Value: center, flex-start, flex-end, space-between, space-around.
+             */
+            justify-content: space-around;
+            -webkit-justify-content: space-around;
+            
+            /* For visualize */
+            border: 1px solid red;
+            border-radius: 1em;
+            flex-wrap: wrap;
+         }
+         .percent25 {
+            width: 25%;
+         }
+      </style>
+      
+      <div class="test_justify_content">
+         <p class="percent25">this is one</p>
+         <p class="percent25">this is two</p>
+         <p class="percent25">this is three</p>
+         <p class="percent25">this is four</p>
+         <p class="percent25">this is five</p>
+      </div>
+      
+      
+      <h2>flex-wrap</h2>
+      
+      <style>
+         .test_wrap {
+            display: flex;
+            
+            /**
+             * Values:
+             * - nowrap: children will be wrapped (break new line when overlength)
+             * - wrap-reverse: children will be wrapped in reversed direction (mirror with `nowrap`)
+             */
+             flex-wrap: nowrap;
+            -webkit-flex-wrap: nowrap;
+            
+            /* For visualize */
+            width: 10em;
+            flex-direction: column;
+         }
+      </style>
+      
+      <div class="test_wrap">
+         <p>this is one</p>
+         <p>this is two</p>
+         <p>this is three, and it is made to become a long text. BUT it will be wrapped since flex-wrap was enabled.</p>
+         <p>this is four</p>
+         <p>this is five</p>
+      </div>
+      
+      
+      <h2>flex-grow</h2>
+      
+      <style>
+         .test_grow {
+            display: flex;
+            flex-grow: 2;
+         }
+      </style>
+      
+      <div class="test_grow">
+         <p>this is one</p>
+         <p>this is two</p>
+         <p>this is three</p>
+         <p>this is four</p>
+         <p>this is five</p>
+      </div>
+      
+      
+      <h2>flex-shrink</h2>
+      
+      <style>
+         .test_shrink {
+            display: flex;
+            
+            /* For visualize */
+            flex-direction: row;
+            justify-content: center;
+         }
+         .shrink3 {
+            flex-shrink: 5;
+         }
+      </style>
+      
+      <div class="test_shrink">
+         <p>this is one</p>
+         <p>this is two</p>
+         <p class="shrink3">this is three</p>
+         <p>this is four</p>
+         <p>this is five</p>
+      </div>
+      
+      
+      <h2>order</h2>
+      
+      <style>
+         .test_order {
+            display: flex;
+            
+            /* For visualize */
+            flex-direction: column;
+         }
+         .child:nth-child(3) {
+            order: 2
+         }
+         .child:nth-child(5) {
+            order: 1
+         }
+      </style>
+      
+      <div class="test_order">
+         <p class="child">this is one</p>
+         <p class="child">this is two</p>
+         <p class="child">this is three</p>
+         <p class="child">this is four</p>
+         <p class="child">this is five</p>
+      </div>
+      
+   </body>
+</html>
