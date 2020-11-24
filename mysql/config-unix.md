@@ -1,51 +1,25 @@
-# Setup & Configuration
+# Configuration
+
+For Unix based OS (`yum` command is main)
 
 
 ## Setup
 
-
-### On Mac
-
-Just download mysql dmg package to install from [mysql](https://dev.mysql.com/downloads/mysql/5.7.html).
-Also download [workbench](https://dev.mysql.com/downloads/workbench/) to handle with query, managing...
-
-
-### On Windows
-
-In Windows, we just install [mysql workbench](https://dev.mysql.com/downloads/workbench/) and install
-`mysql` from workbench.
-
-
-#### On Linux
-
-We need manual install mysql from cli.
-
-- Check whether mysql server is existed before install
+- Install mysql from cli
 
    ```bash
-   yum list mysql*-server
-   ```
-
-- Install your prefered version (eg,.5.7).
-
-   ```bash
+   echo 'Check mysql server existence'
+   sudo yum list mysql*-server
+   echo 'Install v 5.7'
    sudo yum install mysql57-server
-   ```
-
-- Enable at boot time so mysql can auto start when we start OS
-
-   ```bash
+   echo 'Enable at boot time so mysql can auto start when we start OS'
    sudo chkconfig mysqld on
-   ```
-
-- Start and check status
-
-   ```bash
+   echo 'Check status'
    sudo service mysqld start
    sudo service mysqld status
    ```
 
-- Secure mysql server
+- [Optional] Secure mysql server
 
    ```bash
    Set a password for root accounts.
@@ -58,9 +32,9 @@ We need manual install mysql from cli.
 
    ```
    New password: 
-    
+   
    Re-enter new password: 
-    
+   
    Estimated strength of the password: 100 
    Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : Y
    By default, a MySQL installation has an anonymous user,
@@ -69,36 +43,36 @@ We need manual install mysql from cli.
    testing, and to make the installation go a bit smoother.
    You should remove them before moving into a production
    environment.
-    
+   
    Remove anonymous users? (Press y|Y for Yes, any other key for No) : Y
    Success.
-    
-    
+   
+   
    Normally, root should only be allowed to connect from
    'localhost'. This ensures that someone cannot guess at
    the root password from the network.
-    
+   
    Disallow root login remotely? (Press y|Y for Yes, any other key for No) : Y
    Success.
-    
+   
    By default, MySQL comes with a database named 'test' that
    anyone can access. This is also intended only for testing,
    and should be removed before moving into a production
    environment.
-    
-    
+   
+   
    Remove test database and access to it? (Press y|Y for Yes, any other key for No) : Y
     - Dropping test database...
    Success.
-    
+   
     - Removing privileges on test database...
    Success.
-    
+   
    Reloading the privilege tables will ensure that all changes
    made so far will take effect immediately.
-    
+   
    Reload privilege tables now? (Press y|Y for Yes, any other key for No) : Y
    Success.
-    
+   
    All done!
    ```

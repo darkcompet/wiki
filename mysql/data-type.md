@@ -42,7 +42,7 @@
    |---|---|
    DATE | A date value in CCYY-MM-DD format
    TIME | A time value in hh:mm:ss format
-   DATETIME | A date and time value inCCYY-MM-DD hh:mm:ssformat
+   DATETIME | A date and time value in CCYY-MM-DD hh:mm:ssformat
    TIMESTAMP | A timestamp value in CCYY-MM-DD hh:mm:ss format
    YEAR | A year value in CCYY or YY format
 
