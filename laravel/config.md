@@ -1,7 +1,7 @@
 # Setup & Configuration
 
 
-## Config
+## Create project
 
 - Download laravel installer via composer:
 
@@ -12,18 +12,37 @@
 - Create new project
 
    ```bash
-   # via laravel
-   laravel new [project_name]
+   # via laravel (create new project with latest laravel version)
+   composer global require laravel/installer
+   laravel new `project_name`
 
    # or via composer
-   composer create-project --prefer-dist laravel/laravel [project_name] "5.8.*"
+   composer create-project --prefer-dist laravel/laravel `project_name` "5.8.*"
    ```
 
 Now we can start server by run: `php artisan serve`
 
 
+## Extras setting
 
-## Note when setup source code in server
+- Make public storage file visible to client by linking `public/storage` to `storage/app/public`.
+
+   ```bash
+   php artisan storage:link
+   ```
+
+- Migrate (create) database from migration php file
+
+   ```bash
+      # generate tables from database/migrations
+      php artisan migrate
+
+      # drop all tables and migrate
+      php artisan migrate:fresh
+   ```
+
+
+## Note for setup source code in server
 
 - When combine `nginx + laravel + mysql` then `bootstrap` and `storage` must be readable and writable by nginx.
 
