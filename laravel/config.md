@@ -3,12 +3,6 @@
 
 ## Create project
 
-- Download laravel installer via composer:
-
-   ```bash
-   composer global require laravel/installer
-   ```
-
 - Create new project
 
    ```bash
@@ -34,11 +28,18 @@ Now we can start server by run: `php artisan serve`
 - Migrate (create) database from migration php file
 
    ```bash
-      # generate tables from database/migrations
-      php artisan migrate
+    # create migration file (should contains `s` in table name)
+    php artisan make:migration create_users_table
+    # apply migrations to db
+    php artisan migrate
 
-      # drop all tables and migrate
-      php artisan migrate:fresh
+    # create seeder UserSeeder
+    php artisan make:seeder UserSeeder
+    # seed to init db
+    php artisan db:seed
+
+    # drop all tables and re-migrate
+    php artisan migrate:fresh
    ```
 
 

@@ -3,18 +3,19 @@
 
 ## Command Lines
 
-#### powermetrics: view metric of device
+```bash
+# Show CPU and GPU temperature
+sudo powermetrics|grep -i "die temperature"
 
-- Show CPU and GPU temperature
+# Link to folder
+ln -s `dst_folder` `symbol_link_name`
 
-   ```bash
-   sudo powermetrics|grep -i "die temperature"
-   ```
+# Check file/dir size
+du -s `file_or_dir_name`
 
-### `ln`: Link file
+# Zip files
+zip -r `out.zip` `input_file_or_dir_name/`
 
-- Link a file with symbol link
-
-   ```bash
-   ln -s `path_to_folder_we_wanna_link_to` `symbol_link_name`
-   ```
+# Find and delete in result
+find / -name '.DS_Store' -delete
+```
