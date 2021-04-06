@@ -7,9 +7,9 @@
 
 - Update system software
 
-   ```bash
-      # update system software
-      sudo yum update
-   ```
+	```bash
+	# update system software
+	sudo yum update
+	```
 
 ####
