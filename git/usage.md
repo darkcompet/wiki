@@ -42,7 +42,7 @@ registered ssh key.
 	git branch -a
 	```
 
-- Create new branch
+- Create new branch without checkout result-branch (this is diff with `checkout`)
 
 	```bash
 	git branch [new_branch_name]
@@ -63,6 +63,8 @@ registered ssh key.
 
 
 ## git checkout
+
+Diff with `branch`, this command is used to switch branch, obtain file, commit, branch.
 
 - Switch branch
 

@@ -157,3 +157,17 @@ Note:
 https://kipalog.com/posts/Undo--mot-commit-trong-git-tree
 - Patch a range of commits
 https://stackoverflow.com/questions/509859/what-is-the-best-way-to-git-patch-a-subrange-of-a-branch
+
+
+## Find parent branch
+
+- At a branch, run below code to find parent branch of it.
+
+	```bash
+	git show-branch \
+	| sed "s/].*//" \
+	| grep "\*" \
+	| grep -v "$(git rev-parse --abbrev-ref HEAD)" \
+	| head -n1 \
+	| sed "s/^.*\[//" 
+	```
